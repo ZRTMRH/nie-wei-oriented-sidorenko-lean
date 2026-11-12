@@ -1,0 +1,10 @@
+name = "NieWeiOrientedSidorenko"
+defaultTargets = ["NieWeiOrientedSidorenko"]
+
+[[require]]
+name = "TauCeti"
+git = "https://github.com/TauCetiProject/TauCeti"
+rev = "5a01f5fe3621126cccf9ba22e700493cbc7b7156"
+
+[[lean_lib]]
+name = "NieWeiOrientedSidorenko"
