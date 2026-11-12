@@ -1,1 +1,12 @@
--- statements and proofs go here
+import NieWeiOrientedSidorenko.Common
+import NieWeiOrientedSidorenko.Basic
+import NieWeiOrientedSidorenko.Families
+import NieWeiOrientedSidorenko.Literature
+import NieWeiOrientedSidorenko.Section2
+import NieWeiOrientedSidorenko.Section4
+import NieWeiOrientedSidorenko.Section6
+import NieWeiOrientedSidorenko.Section1
+import NieWeiOrientedSidorenko.Examples
+import NieWeiOrientedSidorenko.Witnesses
+import NieWeiOrientedSidorenko.Mixing
+import NieWeiOrientedSidorenko.Main
