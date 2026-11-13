@@ -9,4 +9,10 @@ import NieWeiOrientedSidorenko.Section1
 import NieWeiOrientedSidorenko.Examples
 import NieWeiOrientedSidorenko.Witnesses
 import NieWeiOrientedSidorenko.Mixing
+import NieWeiOrientedSidorenko.KNullPart
+import NieWeiOrientedSidorenko.KWitness
+import NieWeiOrientedSidorenko.KCutPseudo
+import NieWeiOrientedSidorenko.KConj1
+import NieWeiOrientedSidorenko.KCutSymm
+import NieWeiOrientedSidorenko.KCompactId
 import NieWeiOrientedSidorenko.Main
