@@ -1435,8 +1435,9 @@ lemma degOf_glue_inr_inr (H : SimpleGraph V) (k1 k2 : ℕ) (r1 r2 : V) (i : Fin 
   have := i.2
   omega
 
-/-- An isomorphism of glued graphs restricts to an automorphism of the base graph, exchanging the
-roots as prescribed by the gadget sizes. -/
+/-- If `glue H v (2v) u w ≃g glue H v (2v) w' u'` (with `v = card V`, `H` without isolated
+vertices, `card V ≥ 2`, `u ≠ w`, `u' ≠ w'`), then `H` has an automorphism `τ` with `τ u = w'` and
+`τ w = u'`. -/
 lemma auto_of_glue_iso (H : SimpleGraph V) (hH : ∀ x, ∃ y, H.Adj x y)
     (hv : 2 ≤ Fintype.card V) {u w u' w' : V} (huw : u ≠ w) (hu'w' : u' ≠ w')
     (g : glue H (Fintype.card V) (2 * Fintype.card V) u w ≃g

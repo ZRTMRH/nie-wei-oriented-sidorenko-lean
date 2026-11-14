@@ -67,6 +67,8 @@ digraphon definitions of Section 2; the two Question 1(c) rows bridge them.
 | Lemma 4.5 | `OrientedGraph.lemma_4_5` |
 | Lemma 4.6 | `lemma_4_6` |
 | Lemma 6.1 | `OrientedGraph.lemma_6_1` |
+| Lemma 6.1 (finite hosts, final-delivery answers §2) | `OrientedGraph.lemma_6_1_finite` |
+| Theorem 4.1 (finite hosts, final-delivery answers §2) | `OrientedGraph.thm_4_1_finite` |
 -/
 
 namespace NieWeiOrientedSidorenko

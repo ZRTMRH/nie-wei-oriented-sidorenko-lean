@@ -15,4 +15,5 @@ import NieWeiOrientedSidorenko.KCutPseudo
 import NieWeiOrientedSidorenko.KConj1
 import NieWeiOrientedSidorenko.KCutSymm
 import NieWeiOrientedSidorenko.KCompactId
+import NieWeiOrientedSidorenko.FiniteForms
 import NieWeiOrientedSidorenko.Main

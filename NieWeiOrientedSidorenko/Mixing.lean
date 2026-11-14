@@ -499,8 +499,9 @@ lemma meanW_eq : meanW = 1 / 2 := by
 end Mixing
 
 open Mixing in
-/-- **An explicit mixing sequence.** The block transpositions `φ_{n+1}` (`Mixing.phiMP n`) are
-measure-preserving bijections of `[0, 1]` with `W^{φ_n} → ∫ W` weak* for `W(x, y) = (x + y)/2`. -/
+/-- **An explicit mixing sequence.** There is a sequence of measure-preserving bijections `φ_n` of
+`[0, 1]` with `W^{φ_n} → ∫ W` weak* for `W(x, y) = (x + y)/2` (in the proof, the block
+transpositions `Mixing.phiMP n`). -/
 theorem exists_mixing :
     ∃ φ : ℕ → MPBij, WeakStarTendsto (fun n => pullback (φ n).1 avgW) constW := by
   refine ⟨phiMP, fun A B hA hB => ?_⟩

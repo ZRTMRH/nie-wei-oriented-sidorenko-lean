@@ -281,7 +281,10 @@ of `Basic.lean`).
 
 Modelling choice: `U, W` range over everywhere-symmetric graphons (DGHRR's `𝒲₀`). The conditional
 form is stated (it requires `U ⪯ W`); the companion paper's unconditional Corollary 4.24 is not
-assumed. -/
+assumed. The unconditional statement at manuscript l.493 is the companion paper's: Doležal–Grebík–
+Hladký–Rocha–Rozhoň, *Relating the cut distance and the weak* topology for graphons*, J. Combin.
+Theory Ser. B 147 (2021), 252–298, Corollary 4.24 (the authors' final-delivery answers, §3); its
+exact corollary was checked in the companion's accepted manuscript, not its version of record. -/
 def DGHRRFact218Hyp : Prop :=
   ∀ U W : I → I → ℝ, IsSymmGraphon U → IsSymmGraphon W → StructLE U W →
     (StructLE W U ↔ cutDist U W = 0)

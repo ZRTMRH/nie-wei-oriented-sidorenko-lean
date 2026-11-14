@@ -37,7 +37,10 @@ noncomputable def simpleEdgesBetween {W : Type*} [Fintype W] (G : SimpleGraph W)
 assumed nor proved. For a bipartite graph `H`: `t(H, G) ≥ t(K₂, G)^{e(H)}` for every graph `G`;
 and if `H` contains a cycle, then for every `p ∈ (0, 1)` every sequence `G_n` with
 `|V(G_n)| → ∞`, `t(K₂, G_n) = p + o(1)` and `t(H, G_n) = p^{e(H)} + o(1)` is quasi-random:
-`e_{G_n}(A, B) = p|A||B| + o(|V(G_n)|²)` uniformly over `A, B`. -/
+`e_{G_n}(A, B) = p|A||B| + o(|V(G_n)|²)` uniformly over `A, B`.
+The hypotheses of the forcing half can all hold: `KConj1.conj1_forcing_antecedent` gives H = C₄,
+p = 1/2 and the inner-product graphs on F₂^k, and `KConj1.ipSeq_quasirandom` shows that sequence
+is quasi-random. -/
 def SidorenkoForcingConjecture : Prop :=
   ∀ (V : Type) [Fintype V] (H : SimpleGraph V), H.Colorable 2 →
     letI := Classical.decRel H.Adj
