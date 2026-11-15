@@ -8,7 +8,7 @@ Every definition and numbered result of the manuscript has a Lean counterpart. D
 the 21 unnumbered definitions the manuscript introduces in its text are defined. Theorems 1.1–1.4,
 1.6, 1.7, 1.9–1.11 and 4.1, Lemmas 2.2, 2.3, 4.2–4.6 and 6.1, Propositions 1.8 and 1.12,
 Corollary 1.5 and Claim 2.1 are stated and proved, with no `sorry` and only Lean's standard axioms.
-Conjecture 1 is stated only, as a conjecture should be: it is neither assumed nor proved. Where the
+Conjecture 1 is stated only, as a conjecture should be: it is not proved, and no result of the manuscript depends on it. Where the
 manuscript states a result with finite host graphs (Definitions 1 and 2) and uses the equivalent
 digraphon form of Section 2, both forms are proved. Also stated and proved, at the authors' request:
 - the three Question 1(c) bridges: OS, OAS and symmetry-forcing in the finite (or sequence)
@@ -53,14 +53,20 @@ and, optionally, an independent kernel replay of each module with Lean's checker
 Lean `v4.35.0`; Mathlib commit `ccbef15ebdb41c2addfac682131f83c75904c3c1`, pinned through Tau Ceti
 commit `5a01f5fe3621126cccf9ba22e700493cbc7b7156` (`lakefile.toml`, `lake-manifest.json`).
 
-**Status (13 November 2026).** `lake build` completes with no `sorry`. Every listed result depends
+**Status (14 November 2026).** `lake build` completes with no `sorry`. Every listed result depends
 only on `propext`, `Classical.choice` and `Quot.sound`, or on a subset of them. `leanchecker`
 accepted all 29 modules that contain declarations. The statements were compared with the manuscript
 by AI reviewers. Fan Wei approved the statements of the 55 rows reviewed at the statement
 checkpoint. Runtian Zhou approved the two finite-host rows (Lemma 6.1 and Theorem 4.1 for finite
-hosts), on the basis of Fan Wei's clarification that such forms are "equivalent formal presentations
-of the same approved assertions". Fan Wei has not yet checked these two rows herself. See
-`CERTIFICATE.md`, section 5.
+hosts) on 13 November 2026, on the basis of Fan Wei's clarification that such forms are "equivalent
+formal presentations of the same approved assertions"; Fan Wei approved them herself on 14 November
+2026 ("The two finite-host statements agree with my intended statements, and I approve them"). She
+also agreed to two readings of auxiliary definitions under their stated preconditions, and did not
+request an unconditional example of a cut-distance-identifying parameter (none was built; the
+conditional example t(C₄, ·) is kept). Conjecture 1 is not proved, and no result of the manuscript
+depends on it. The Level K(ii) qualification stands: every result is proved under policy (ii), the
+authorised published assumptions listed above being explicit hypotheses, and its Lean-side conditions
+are met at Lean commit `091c6b2e456e81a92221d58ae554c46dd0988578`. See `CERTIFICATE.md`, section 5.
 
 This formalization was produced with the formalize-paper workflow (Claude, Anthropic's AI model, in
 Claude Code, directed by Runtian Zhou).

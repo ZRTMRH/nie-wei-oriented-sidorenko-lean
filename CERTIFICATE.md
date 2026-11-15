@@ -38,7 +38,7 @@ The proofs themselves (about 21,000 lines in `NieWeiOrientedSidorenko/`) need no
 definition and numbered result of the manuscript has a Lean counterpart there (listed in
 `NieWeiOrientedSidorenko/Main.lean` and in section 6 below): every theorem, lemma, corollary,
 proposition and claim is stated and proved, every numbered definition is defined, and Conjecture 1
-is stated only (it is neither assumed nor proved). The authors' requested additions are also stated
+is stated only (it is not proved, and no result of the paper depends on it). The authors' requested additions are also stated
 and proved: the three Question 1(c) bridges, the B1 corollary, both readings of B4(i), B4(ii), the
 every-bipartition corollary of Theorem 1.4, and the finite-host forms of Lemma 6.1 and Theorem 4.1.
 
@@ -799,7 +799,10 @@ Lean definitions are in `NieWeiOrientedSidorenko/Basic.lean` unless another file
   The cycle's direction of traversal is chosen arbitrarily; the cosine does not depend on it, and
   this is proved (`Section6Aux.cosImbalance_eq_of_isCycle`, Section6.lean:824).
 - **Conjecture 1** (tex l.121; Section1.lean:44) is recorded as a proposition `SidorenkoForcingConjecture`,
-  not a result: no theorem assumes it as a hypothesis or proves it.
+  not a result: it is not proved, and no result of the paper depends on it. Two auxiliary
+  bookkeeping lemmas (`KConj1.forcing_antecedent_unfold`, `KConj1.forcing_half_applies_to_witness`)
+  take it as an explicit hypothesis, to record that a Lean example meets the hypotheses of its forcing
+  half; no result of the paper uses them.
 
 ### 4b. The published results assumed
 
@@ -864,9 +867,21 @@ space obtained by identifying distance zero (`KCompactId.frhsu_iff_published`,
   - **Runtian Zhou approved the two finite-host rows** (`lemma_6_1_finite`, `thm_4_1_finite`) on
     13 November 2026: "I approve them. And add it in the final delivery report for fan to read."
     The approval relied on Fan Wei's §2, which calls such forms "equivalent formal presentations of the same
-    approved assertions, not additional mathematical claims". **Fan Wei has not yet checked these
-    two rows herself.** Each follows in one line from its approved digraphon form and a proved
-    bridge, with no new assumption.
+    approved assertions, not additional mathematical claims". Each follows in one line from its
+    approved digraphon form and a proved bridge, with no new assumption.
+  - **Fan Wei approved the two finite-host rows herself** on 14 November 2026 (relayed by Runtian
+    Zhou, who confirms she adopted the text as her own reply): "The two finite-host statements agree
+    with my intended statements, and I approve them. They are equivalent formulations of the original
+    results, not additional theorems." Runtian Zhou's approval of 13 November stays recorded as his.
+    Her reply "should not be used to infer any earlier approval dates or communications", and the
+    record infers none.
+  - **Two readings of auxiliary definitions**, settled by the formalizing agent, were agreed by Fan
+    Wei on 14 November 2026 "under the stated preconditions":
+    - `Section1Aux.symmVersion U` (the symmetric version of a kernel U) is an almost-everywhere-equal
+      version of U only when U is symmetric almost everywhere, i.e. a graphon (`symmVersion_spec`);
+    - `Section1Aux.sideOG H s` (the orientation of H from the side s) is an orientation of H, with
+      underlying graph H, only when s is a bipartition of H (`sideOG_underlying`).
+    The Lean uses each only under its precondition.
   - A mechanical freeze check confirms that none of the 133 approved Lean statements has changed
     since its approval.
 - **Three independent audits.** Besides the review rounds, three read-only audits by separate
@@ -884,7 +899,13 @@ space obtained by identifying distance zero (`KCompactId.frhsu_iff_published`,
     forms of FHMZ Theorems 13 and 18 are adaptations that neither FHMZ nor Lovász proves. No Lean
     check shows the 11 hypotheses consistent as worded.
   - **No unconditional example of a cut distance identifying parameter** was built. The one example,
-    t(C₄, ·), comes from Theorem 1.4 and so rests on the assumed results.
+    t(C₄, ·), comes from Theorem 1.4 and so rests on the assumed results. Fan Wei did not request one
+    (14 November 2026): "please retain the existing conditional witness and accurately disclose that
+    the unconditional example was not built."
+  - **Review rounds.** No further review round was run after the final commit because the
+    workflow's round limit was reached. Fan Wei clarified (14 November 2026) that her earlier
+    instruction against another review round "applied only to removing or generalizing the six
+    retained items. It was not a blanket instruction against further necessary review."
   - **Unused hypotheses are kept**, at the authors' request (final-delivery answers, §1): DGHRR
     Fact 2.17 in Theorem 1.4 (unused) and in its two other forms and Corollary 1.5 (forwarded only);
     Facts 2.17, 2.18 and FRHSU in B4(i); FHMZ Thm 13 in the finite forms of Theorems 1.1 and 1.7;
@@ -920,7 +941,7 @@ Lean names in `NieWeiOrientedSidorenko/Main.lean`.
 
 | Paper | Lean | Status |
 |---|---|---|
-| Conjecture 1 | `SidorenkoForcingConjecture` | stated only (a conjecture): neither assumed nor proved |
+| Conjecture 1 | `SidorenkoForcingConjecture` | stated only (a conjecture): not proved; no result of the paper depends on it (two auxiliary bookkeeping lemmas take it as a hypothesis) |
 | Definition 1 | `OrientedGraph.IsOS`, `OrientedGraph.IsOAS` | defined |
 | Definition 2 | `OrientedGraph.IsSymmetryForcing` | defined |
 | Definition 3 | `OrientedGraph.Dt` | defined |
@@ -948,14 +969,14 @@ Lean names in `NieWeiOrientedSidorenko/Main.lean`.
 | Lemma 2.2 | `lemma_2_2` | proved |
 | Lemma 2.3 | `lemma_2_3_1`, `lemma_2_3_2` (its parts 1 and 2) | proved |
 | Theorem 4.1 | `OrientedGraph.thm_4_1` | proved (condition (a) unused) |
-| Theorem 4.1, finite hosts | `OrientedGraph.thm_4_1_finite` | proved; approved by Runtian Zhou, not yet by Fan Wei |
+| Theorem 4.1, finite hosts | `OrientedGraph.thm_4_1_finite` | proved; approved by Runtian Zhou (13 November 2026) and by Fan Wei (14 November 2026) |
 | Lemma 4.2 | `OrientedGraph.lemma_4_2` | proved |
 | Lemma 4.3 | `OrientedGraph.lemma_4_3` | proved, assuming Lovász 5.44(c) |
 | Lemma 4.4 | `OrientedGraph.lemma_4_4` | proved, assuming Lovász 5.44(c) |
 | Lemma 4.5 | `OrientedGraph.lemma_4_5` | proved, assuming Lovász 5.44(c) |
 | Lemma 4.6 | `lemma_4_6` | proved |
 | Lemma 6.1 | `OrientedGraph.lemma_6_1` | proved (the range of θ unused) |
-| Lemma 6.1, finite hosts | `OrientedGraph.lemma_6_1_finite` | proved; approved by Runtian Zhou, not yet by Fan Wei |
+| Lemma 6.1, finite hosts | `OrientedGraph.lemma_6_1_finite` | proved; approved by Runtian Zhou (13 November 2026) and by Fan Wei (14 November 2026) |
 
 All names are in the namespace `NieWeiOrientedSidorenko`. Lemmas 4.2, 4.4 and 4.5 take as a
 hypothesis the manuscript's own assumption that D is OS, and Lemma 4.3 that D is OS or OAS (in
