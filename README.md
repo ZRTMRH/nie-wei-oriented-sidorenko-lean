@@ -1,8 +1,8 @@
 # Sidorenko Inequalities and Symmetry-Forcing for Graph Orientations — Lean 4 formalization
 
 A Lean 4 / Mathlib formalization of J. Nie and F. Wei, "Sidorenko inequalities and symmetry-forcing
-for graph orientations", an unpublished manuscript. It follows the numbering and statements of the
-manuscript's **version of 11 November 2026**.
+for graph orientations", arXiv:2611.15027v1. It follows the numbering and statements of the
+manuscript's **version of 11 November 2026**, whose LaTeX source is identical to that arXiv version's.
 
 Every definition and numbered result of the manuscript has a Lean counterpart. Definitions 1–3 and
 the 21 unnumbered definitions the manuscript introduces in its text are defined. Theorems 1.1–1.4,
@@ -71,8 +71,10 @@ are met at Lean commit `091c6b2e456e81a92221d58ae554c46dd0988578`. See `CERTIFIC
 This formalization was produced with the formalize-paper workflow (Claude, Anthropic's AI model, in
 Claude Code, directed by Runtian Zhou).
 
-## Confidentiality
+## Paper and use
 
-This is a private repository. The manuscript it formalizes is unpublished and is not included here.
+The paper is public as arXiv:2611.15027v1; it is not included in this repository. Some Lean module
+headers, written before the paper was posted, call it an unpublished manuscript; the Lean library is
+left unchanged so that it stays the file tree that was checked (CERTIFICATE.md, section 2).
 All rights are reserved by the authors; no license is granted. Please do not copy or redistribute
 this repository or its contents without the authors' permission.
