@@ -1,22 +1,87 @@
-# Certificate of correctness — Sidorenko Inequalities and Symmetry-Forcing for Graph Orientations (Nie, Wei)
+# Lean formalization certificate — Sidorenko Inequalities and Symmetry-Forcing for Graph Orientations (Nie, Wei)
 
-This repository is a Lean 4 formalization of J. Nie and F. Wei, "Sidorenko inequalities and
-symmetry-forcing for graph orientations", an unpublished manuscript. It follows the statements and
-the numbering of the manuscript's numbered results in its **version of 11 November 2026**. Paper
-references below are to that numbering (Theorem 1.2, Definition 1, …) and its sections. "tex l.N" is
-line N of the manuscript's LaTeX source in that version; the manuscript itself is not in this
-repository. `File.lean:N` is line N of `NieWeiOrientedSidorenko/File.lean` in this repository.
+## At a glance
 
-The authors also answered three sets of questions during the formalization (the pre-run answer key,
-the Checkpoint B answer key and the final-delivery answers). Where a statement comes from one of
-them rather than from the manuscript, this is said.
+**What this is.** A machine-checked formalization, in the proof assistant Lean 4 with its Mathlib
+library, of J. Nie and F. Wei, "Sidorenko inequalities and symmetry-forcing for graph orientations"
+(unpublished manuscript, version of 11 November 2026). The Lean code was written by an AI model
+(Claude, by Anthropic). Lean's kernel, a small trusted program, checked every step of every proof.
 
-## 1. What certifies the proofs
+**What is certified.**
+- Every numbered definition and result of the manuscript is stated in Lean. Every theorem, lemma,
+  corollary, proposition and claim is proved. Conjecture 1 is stated only; no result of the paper
+  depends on it. A few additions requested by the authors are also proved (section 3).
+- The proofs have no gaps (no `sorry`) and use only Lean's three standard axioms (propositional
+  extensionality, choice, quotient soundness).
+- Results that need a published result take it as an explicit hypothesis: the Lean theorem reads
+  "if these published results hold, then …". So what is certified is that **the manuscript's results
+  are correct given the cited published results**, as these are worded in Lean.
+
+**The 11 published results assumed** (authorised by the authors; section 4b gives exact sources and
+the Lean wording):
+- Lovász, *Large Networks and Graph Limits*: Prop. 5.44(c) and Prop. 14.2(a);
+- Doležal–Grebík–Hladký–Rocha–Rozhoň (DGHRR), J. Combin. Theory Ser. A (2022): Cor. 3.24, Thm 3.25
+  (with Thm 2.14), Facts 2.17 and 2.18;
+- Lee–Sidorenko, J. London Math. Soc. (2022): Thm 1.3;
+- Falgas-Ravry–Hancock–Strömberg–Uzzell (FRHSU), J. Graph Theory (2023): Thm 4.3;
+- Fox–Himwich–Mani–Zhou (FHMZ), Electron. J. Combin. (2025): Thms 13 and 18, and a compactness
+  assertion on p. 6 that **is stated there without proof**. The directed forms of FHMZ Theorems 13
+  and 18 used here are adaptations that neither FHMZ nor Lovász proves.
+
+Which result needs which is listed in section 6. For example, Theorem 1.2 and the digraphon form of
+Theorem 1.3 need only Lovász Prop. 5.44(c); the FHMZ items enter only the finite-host (sequence)
+forms of the results about symmetry-forcing; Theorem 1.6, Theorem 4.1, Proposition 1.8 and Lemma 6.1
+need none.
+
+**What is not certified.**
+- **That the Lean statements say what the paper says.** No machine can check this. It rests on
+  reviews by separate AI instances that compared each Lean statement with the paper, and on Fan
+  Wei's approval of every statement (section 5). Sections 3 and 4 put each Lean statement next to the
+  paper's wording, so a reader can judge.
+- **That the Lean wording of the 11 assumed results matches the sources.** This was compared by the
+  AI reviewers, not proved. The same holds for the Lean definitions of cut distance used by the
+  assumed results. The printed numbering of two sources was not verified, and no check shows the 11
+  hypotheses consistent as worded (section 5).
+- **The manuscript's written proofs.** The Lean proofs are Lean's own; they were not compared with the
+  manuscript's proofs step by step, and in 56 recorded places they take a different route of the same
+  strength. A Lean proof certifies the statement, not the written argument.
+- The AI reviewers are instances of the same model that wrote the code, so they are not independent
+  in the way a human referee is.
+
+**How to re-check.** With access to the repository, two commands re-run the kernel check and print
+the axioms each main theorem uses (section 2).
+
+**Guide to the rest.** Section 1 explains what the certificate rests on and 1a how to read the Lean
+statements; section 2 gives the commands and their results; section 3 puts the main theorems next to
+the paper; section 4 does the same for the definitions, and 4b for the assumed published results;
+section 5 says what was reviewed, by whom, and the disclosed limits; section 6 lists every numbered
+result with its status; section 7 says how the formalization was produced.
+
+### References, names and documents used below
+
+- **The manuscript.** This repository follows the statements and the numbering of the manuscript's
+  numbered results in its version of 11 November 2026. Paper references below are to that numbering
+  (Theorem 1.2, Definition 1, …) and its sections. "tex l.N" is line N of the manuscript's LaTeX
+  source in that version; the manuscript itself is not in this repository. `File.lean:N` is line N of
+  `NieWeiOrientedSidorenko/File.lean` in this repository.
+- **The authors' answers.** The authors answered three sets of questions during the formalization.
+  Where a statement comes from one of them rather than from the manuscript, this is said.
+  - The **pre-run answer key**, written before the formalization: it fixed the definitions to use,
+    how each earlier result is used, either assumed or proved (its items A1–A11) and the additions to the
+    manuscript's results (its items Question 1(c), B1 and B4).
+  - The **Checkpoint B answer key**. Checkpoint B is the point at which the authors reviewed and
+    approved the Lean statements; its questions are numbered Q1–Q7.
+  - The **final-delivery answers**, the authors' reply to the first delivery, in sections §1–§5.
+- **People.** Fan Wei is an author of the manuscript; she approved the statements. Runtian Zhou
+  directed the formalization and relayed some of Fan Wei's answers.
+
+## 1. What the certificate rests on
 
 A Lean formalization certifies a theorem through three things together:
 
 1. **The statements.** The Lean statements of the main theorems, and the definitions they use, say
-   what the paper says. This is the only part a person has to read. Sections 3 and 4 below put
+   what the paper says. This is the only part a person has to read, and the only part no machine
+   can check (section 5 says who checked it). Sections 3 and 4 below put
    each statement and definition next to the paper's wording, and section 1a explains the Lean
    notation they use.
 2. **The kernel check.** Lean's kernel accepts every proof in the repository. Nobody needs to read
@@ -32,14 +97,16 @@ argument, so its statement reads "if this published result holds, then …". Not
 an axiom, and the axiom check above would show it if anything were. So each theorem is proved
 outright *conditionally on* the published results its statement names, and section 6 lists which
 those are. A statement is only as good as the wording of its hypotheses; the wording of each was
-compared with its source (section 5).
+compared with its source by the AI reviewers (section 5), not proved.
 
 The proofs themselves (about 21,000 lines in `NieWeiOrientedSidorenko/`) need not be read. Every
 definition and numbered result of the manuscript has a Lean counterpart there (listed in
 `NieWeiOrientedSidorenko/Main.lean` and in section 6 below): every theorem, lemma, corollary,
 proposition and claim is stated and proved, every numbered definition is defined, and Conjecture 1
 is stated only (it is not proved, and no result of the paper depends on it). The authors' requested additions are also stated
-and proved: the three Question 1(c) bridges, the B1 corollary, both readings of B4(i), B4(ii), the
+and proved: the three equivalences between the finite and digraphon definitions (Question 1(c) of
+the pre-run answer key), the connected symmetric-convention corollary of Theorem 1.4 (item B1), both
+readings of the K₂,₃ result (item B4(i)) and the OS / step-Sidorenko equivalence (item B4(ii)), the
 every-bipartition corollary of Theorem 1.4, and the finite-host forms of Lemma 6.1 and Theorem 4.1.
 
 ## 1a. Reading the Lean statements (no Lean knowledge assumed)
@@ -107,7 +174,8 @@ Versions: Lean `v4.35.0` (`lean-toolchain`); Mathlib commit
 
 **Results of these checks (13 November 2026).** All were run on the Lean sources of this
 repository (the same file tree as commit `091c6b2` of the working project).
-- `lake build`: completes, with no `sorry` (the workflow's final check before delivery).
+- `lake build`: completes, with no `sorry` (the formalization workflow's final check before
+  delivery).
 - `lake env lean Certificate.lean`: all 26 `example`s accepted; each of the 26 theorems depends on
   `[propext, Classical.choice, Quot.sound]` only, with no errors or warnings (checked 13 November 2026;
   peak memory about 6.5 GB).
@@ -127,6 +195,12 @@ repository (the same file tree as commit `091c6b2` of the working project).
   is covered by the per-module replays.
 
 ## 3. The main theorems
+
+Each entry below gives the paper's statement (quoted, with its tex line), then the Lean statement,
+then its source line in this repository, then in words the assumed published results its hypotheses
+name and any difference of form. In a Lean statement, the arguments named `h…` before the final
+colon are the hypotheses (those named `hA1`, `h13`, … are assumed published results) and the text
+after the final colon is the conclusion; section 1a explains the notation.
 
 Conventions used throughout.
 - **Directed graphs** are orientations of finite simple graphs: no loops, no antiparallel arcs,
@@ -148,7 +222,8 @@ Conventions used throughout.
   with it almost everywhere and meets the pointwise conditions, and the almost-everywhere passages
   the proofs need are proved.
 - **"Weakly norming graph"**, for a graph given without a bipartition, means "weakly norming for
-  some bipartition" (`IsWeaklyNormingGraph`), the authors' answer at Checkpoint B (Q1(a)). The
+  some bipartition" (`IsWeaklyNormingGraph`), the authors' answer to Q1 of the Checkpoint B answer
+  key, option (a). The
   "every bipartition" reading is a corollary (Theorem 1.4 below).
 - **Assumed published results** appear as hypotheses with names such as `hA1`; section 4b gives
   their wording. The plain reading of each theorem names the ones it carries. A few statements carry
@@ -193,8 +268,8 @@ theorem thm_1_1 (hA1 : LovaszProp544cHyp.{0}) (hA4 : LeeSidorenkoThm13Hyp.{0})
 (Section1.lean:88; the digraphon form `thm_1_1_kernel`, :95, assumes only Lovász 5.44(c), 14.2(a)
 and Lee–Sidorenko)
 
-Assumes Lovász Props. 5.44(c) and 14.2(a), Lee–Sidorenko Thm 1.3, and the three FHMZ items; FHMZ
-Thm 13 is carried but not needed.
+The finite form shown assumes Lovász Props. 5.44(c) and 14.2(a), Lee–Sidorenko Thm 1.3, and the
+three FHMZ items; FHMZ Thm 13 is carried but not needed.
 
 ### Theorem 1.2 (characterization of connected OS directed graphs)
 
@@ -251,7 +326,8 @@ theorem thm_1_4 (hA2 : DGHRRCor324Hyp.{u}) (hF217 : DGHRRFact217Hyp) (hF218 : DG
 Assumes DGHRR Cor. 3.24, Facts 2.17 and 2.18, and FRHSU Thm 4.3; Fact 2.17 is unused. No
 connectedness is assumed (Checkpoint B, Q1(a)).
 
-**Reading "weakly norming for every bipartition"** (kept at Checkpoint B as a derived corollary):
+**Reading "weakly norming for every bipartition"** (kept at Checkpoint B, by the authors' choice,
+as a derived corollary):
 
 ```lean
 theorem thm_1_4_every_bipartition (hA2 : DGHRRCor324Hyp.{u}) (hF217 : DGHRRFact217Hyp)
@@ -265,7 +341,7 @@ theorem thm_1_4_every_bipartition (hA2 : DGHRRCor324Hyp.{u}) (hF217 : DGHRRFact2
 ```
 (Section1.lean:156; the same assumptions, Fact 2.17 forwarded only)
 
-**B1: the connected symmetric-convention form.**
+**The connected symmetric-convention form (item B1 of the pre-run answer key).**
 
 > Author-confirmed addition: also state and prove the connected symmetric-convention corollary,
 > using A4 to transfer to the full-kernel setting. Preserve the connectedness and positive-edge
@@ -317,7 +393,7 @@ theorem thm_1_6 {X Y : Type*} [Fintype X] [Fintype Y] (E : Finset (X × Y)) (hE 
 
 No assumed result. The bipartite graph is given by its parts X, Y and its edge set E ⊆ X × Y.
 
-### B4(i): K₂,₃ is weakly norming and step forcing, but not norming
+### Addition B4(i): K₂,₃ is weakly norming and step forcing, but not norming
 
 > (i) explicitly prove that K₂,₃ is step forcing but not norming, giving the negative answer to
 > DGHRR Problem 3.29. (Pre-run answer key, B4, author-confirmed.) Retain the full B4(i) row
@@ -343,7 +419,7 @@ weakly norming for its bipartition into parts of sizes 2 and 3, step forcing, an
 any bipartition. The second assumes nothing: W ↦ |t(K₂,₃, W)|^{1/6} is not a norm on the symmetric
 bounded measurable kernels, the convention of DGHRR's Problem 3.29.
 
-### B4(ii): OS and step Sidorenko
+### Addition B4(ii): OS and step Sidorenko
 
 > (ii) explicitly prove D is OS ⟺ D̄ is step Sidorenko for D connected, one-direction,
 > self-converse, and e(D) > 0, using the manuscript's OS characterization and A3–A4. (Pre-run
@@ -807,8 +883,9 @@ Lean definitions are in `NieWeiOrientedSidorenko/Basic.lean` unless another file
 ### 4b. The published results assumed
 
 Each is a `def … : Prop` in `NieWeiOrientedSidorenko/Literature.lean`. Its docstring gives the exact
-source, the version checked, and every modelling choice. The labels A1–A9 are the ones the
-formalization's records use.
+source, the version checked, and every modelling choice. The labels A1–A9 are those of the pre-run
+answer key; A5 there covers two facts, and the missing labels A6–A8 are results proved in Lean, not
+assumed. FRHSU and FHMZ are labelled by their authors' initials.
 
 | label | Lean (Literature.lean line) | source |
 |---|---|---|
@@ -848,9 +925,9 @@ space obtained by identifying distance zero (`KCompactId.frhsu_iff_published`,
 
 - **The kernel check and the axiom check** are mechanical and reproducible by anyone with the
   commands of section 2. The independent kernel replay is reported in section 2.
-- **Faithfulness of the statements** (part 1 of section 1) is a human judgement. During the
-  formalization, separate Claude instances (each given a single criterion and no access to the
-  others' reviews) compared the Lean statements with the paper in ten completed review rounds. Each
+- **Faithfulness of the statements** (part 1 of section 1) is a matter of judgement, made by AI
+  reviewers and by the authors, not a machine check. During the formalization, separate Claude instances (each given a single criterion and no access to the
+  others' reviews) compared the Lean statements with the paper in ten completed review rounds (in each round every reviewer examined the then-current Lean). Each
   statement was checked for four things: it means what its description says; it is the paper's
   result, no weaker and no stronger; its hypotheses can be satisfied; it is not trivial or
   repackaged. The wording of each of the 11 assumed published results was also compared with its
@@ -858,7 +935,8 @@ space obtained by identifying distance zero (`KCompactId.frhsu_iff_published`,
   the code, so they are not independent in the way a human referee is. No review for overlap with
   Mathlib (prior art) was run.
 - **Approval of the statements by people.**
-  - **Fan Wei approved the statements of the 55 rows reviewed at Checkpoint B** (every definition
+  - **Fan Wei approved the statements of the 55 rows (entries of the statement index) reviewed at
+    Checkpoint B** (every definition
     and numbered result of the manuscript, and the authors' additions except the two finite-host
     rows). The record has her approval of 12 November 2026 as relayed by Runtian Zhou, and her own
     words in the final-delivery answers of 13 November 2026: "I now approve all Checkpoint B
@@ -882,11 +960,11 @@ space obtained by identifying distance zero (`KCompactId.frhsu_iff_published`,
     - `Section1Aux.sideOG H s` (the orientation of H from the side s) is an orientation of H, with
       underlying graph H, only when s is a bipartition of H (`sideOG_underlying`).
     The Lean uses each only under its precondition.
-  - A mechanical freeze check confirms that none of the 133 approved Lean statements has changed
-    since its approval.
+  - An automatic comparison of each approved Lean statement with a fingerprint recorded at its
+    approval confirms that none of the 133 approved Lean statements has changed since.
 - **Three independent audits.** Besides the review rounds, three read-only audits by separate
-  Claude sessions examined the delivered Lean at three stages (before the K pass, after it, and at
-  the final commit). None found a blocking problem. The first found one condition of Checkpoint B
+  Claude sessions examined the delivered Lean at three stages (before the final work on the authors' sign-off
+  requirements, after it, and at the final commit). None found a blocking problem (one that had to be fixed before delivery). The first found one condition of Checkpoint B
   (identifying the formal compactness hypotheses with the published ones) not yet proved; it was
   then proved (the equivalences named at the end of section 4b). These audits are also AI reviews.
 - **Disclosed limits.** A reader should know these:
@@ -903,9 +981,10 @@ space obtained by identifying distance zero (`KCompactId.frhsu_iff_published`,
     (14 November 2026): "please retain the existing conditional witness and accurately disclose that
     the unconditional example was not built."
   - **Review rounds.** No further review round was run after the final commit because the
-    workflow's round limit was reached. Fan Wei clarified (14 November 2026) that her earlier
+    formalization workflow's limit on the number of review rounds was reached. Fan Wei clarified (14 November 2026) that her earlier
     instruction against another review round "applied only to removing or generalizing the six
-    retained items. It was not a blanket instruction against further necessary review."
+    retained items. It was not a blanket instruction against further necessary review." The six
+    items are the unused hypotheses of the next point.
   - **Unused hypotheses are kept**, at the authors' request (final-delivery answers, §1): DGHRR
     Fact 2.17 in Theorem 1.4 (unused) and in its two other forms and Corollary 1.5 (forwarded only);
     Facts 2.17, 2.18 and FRHSU in B4(i); FHMZ Thm 13 in the finite forms of Theorems 1.1 and 1.7;
@@ -915,16 +994,17 @@ space obtained by identifying distance zero (`KCompactId.frhsu_iff_published`,
     Proposition 1.12, Lemma 2.3 and Lemma 4.2, have hypotheses that can never all hold, by design;
     their docstrings say so. No result of the paper is vacuous, assuming the cited results are true
     as worded.
-  - **166 deferred findings** of the statement-strength review, on auxiliary helper lemmas
+  - **166 deferred findings** of the AI review for statement strength, on auxiliary helper lemmas
     (duplicate, forwarding or idle helpers), were deferred and not repaired. None touches a stated
     result, a hypothesis, a definition or a main theorem.
   - **Proof routes.** The Lean proofs were not compared with the manuscript's proofs step by step. A
     Lean proof certifies the statement, not the manuscript's written argument.
-  - **A process stop (S3).** One review notice in the formalization's record lacks the two Lean names
-    `OrientedGraph.lemma_6_1_finite` and `OrientedGraph.thm_4_1_finite`, after an edit that broke the
-    record's ownership rule was reverted; Runtian Zhou asked that it stay as it is. It does not
-    affect any Lean statement or proof.
-  - **Record provenance.** The workflow's checks show that its records agree with each other and with
+  - **An incomplete record entry.** One notice in the formalization's internal record lacks the two
+    Lean names `OrientedGraph.lemma_6_1_finite` and `OrientedGraph.thm_4_1_finite`. An edit
+    restoring them was reverted because it broke the record's rule on who may change that file;
+    Runtian Zhou asked that the notice stay as it is. It does not affect any Lean statement or
+    proof.
+  - **Record provenance.** The formalization workflow's checks show that its records agree with each other and with
     the Lean; they cannot show who wrote each record.
 - **Intermediate results.** `NieWeiOrientedSidorenko/Main.lean` lists every result with its Lean
   names. Some proofs take a different route from the paper's (56 recorded places, each of the same
